@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Secure Server login</title>
+        <link href="style.css" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="content">
+            <h1>Secure Server login</h1>
+            <h4>Decryption Key</h4>
+            <input type="text" id="key">
+            <input type="button" value="Login" onclick="Login()">
+        </div>
+        <script>
+            const key = document.getElementById("key")
+            const params = new URLSearchParams(window.location.search)
+            if(params.has("key")) {
+                key.value = params.get("key")
+                Login()
+            }
+
+            function Login() {
+                SetCookie("key", key.value, 1)
+                location = `/encrypted/index.html`
+            }
+
+            function GetCookie(cookieName) {
+                var name = cookieName + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function SetCookie(name, value, expiration) {
+                var d = new Date();
+                d.setTime(d.getTime() + (expiration * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            }
+        </script>
+    </body>
+</html>

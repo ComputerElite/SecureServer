@@ -1,0 +1,31 @@
+:root {
+    --textColor: #EEEEEE;
+    --bgColor: #181A1B;
+    --hightlightColor: #333030;
+    font-size: 18px!important;
+}
+
+html {
+    font-family: 'Open Sans';
+    font-size: 1rem;
+}
+
+
+body {
+    margin: 0;
+    color: var(--textColor);
+    line-height: 1.8;
+    background-color: var(--bgColor);
+    min-height: 100vh;
+}
+
+.content {
+    margin: 10px;
+}
+
+input {
+    padding: 5px;
+    border: none;
+    color: var(--textColor);
+    background-color: var(--hightlightColor);
+}
